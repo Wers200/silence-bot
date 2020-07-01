@@ -5,7 +5,7 @@ EvalManager.prototype.FromString = function(string){
 
 const discord = require('discord.js');
 const client = new discord.Client();
-const config = require(__dirname + '\\config.json');
+const config = require('./config.json');
 const fs = require('fs');
 const evalManager = new EvalManager();
 let usersCooldown = [[]];
