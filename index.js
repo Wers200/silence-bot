@@ -91,7 +91,7 @@ client.on('message', function(message) {
                 .setDescription(`${message.content.replace("s.bug ", "")}`)
             bugChannel.send(answerEmbed);
             message.delete();
-            message.reply("ваш баг был отправлен админам и модерам.")
+            message.reply("Ваш баг был отправлен админам и модерам.")
             usersCooldown.push([message.member.id, true, "bug"]);
             setTimeout(function() {
                 usersCooldown.splice(usersCooldown.length - 1, 1);
