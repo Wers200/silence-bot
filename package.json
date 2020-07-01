@@ -8,13 +8,25 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.js"
   },
   "keywords": [
     "discord",
     "exclusive",
     "bot"
   ],
+  "engines": {
+    "node": "12.x"
+  },
   "author": "DV Game",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wers200/silence-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wers200/silence-bot/issues"
+  },
+  "homepage": "https://github.com/Wers200/silence-bot#readme"
 }
