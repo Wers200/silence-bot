@@ -1,13 +1,9 @@
-class EvalManager {}
-EvalManager.prototype.FromString = function(string){
-    return function(message, args) { eval(string); }
-}
-
 const discord = require('discord.js');
 const client = new discord.Client();
 const config = require('./config.json');
 const fs = require('fs');
 const evalManager = new EvalManager();
+const prefix = "s!";
 let usersCooldown = [[]];
 
 client.on('ready', function(message) {
@@ -15,8 +11,8 @@ client.on('ready', function(message) {
     client.user.setPresence({
         status: "dnd",
         activity: {
-            name: "s.help",
-            type: "LISTENING"
+            name: prefix + 'help | ' + client.guilds[0].cache.array().length,
+            type: "WATCHING"
         }
     });
 });
@@ -29,19 +25,19 @@ client.on('message', function(message) {
             message.react('👎');
         }
     }
-    if(message.content.toLowerCase().startsWith("s.help")) {
+    if(message.content.toLowerCase().startsWith("s!help")) {
         const answerEmbed = new discord.MessageEmbed()
             .setColor('#c1e673')
             .setFooter(`Requested by ${message.member.user.username}`, message.member.user.displayAvatarURL({format: "gif"}))
             .setTitle(`Справка по командам Silence Bot:`)
             .addFields(
-                { name: 'Отправка идей / багов / жалоб', value: '• s.idea (идея) - отправляет вашу идею в канал <#726083843085565993>.\n• s.bug (описание бага) - отправляет баг админам и модерам.\n• s.complaint (жалоба) - отправляет вашу жалобу в канал <#727076530345476209>.'}
+                { name: 'Отправка идей / багов / жалоб', value: '• ' + prefix + 'idea (идея) - отправляет вашу идею в канал <#726083843085565993>.\n• s!bug (описание бага) - отправляет баг админам и модерам.\n• s!complaint (жалоба) - отправляет вашу жалобу в канал <#727076530345476209>.'}
 	         )
              .setTimestamp();
         message.channel.send(answerEmbed);
     }
-    else if(message.content.toLowerCase().startsWith("s.idea ")) {
-        let ideaChannel = message.guild.channels.resolve('726083843085565993');
+    else if(message.content.toLowerCase().startsWith(prefix + 'idea ')) {
+        let ideaChannel = message.guild.channels!resolve('726083843085565993');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -55,7 +51,7 @@ client.on('message', function(message) {
                 .setColor('#c1e673')
                 .setAuthor(message.member.user.username, message.member.user.displayAvatarURL())
                 .setTitle(`Предложение:`)
-                .setDescription(`${message.content.replace("s.idea ", "")}`)
+                .setDescription(`${message.content.replace(prefix + 'idea ', '')}`)
             ideaChannel.send(answerEmbed).then(message => {
                 message.react('👍');
                 message.react('👎');
@@ -73,8 +69,8 @@ client.on('message', function(message) {
                 .setDescription(`${message.author}, пожалуйста, подождите примерно 10 минут (таков таймаут).`)
             message.channel.send(answerEmbed);
         }
-    } else if(message.content.toLowerCase().startsWith("s.bug ")) {
-        let bugChannel = message.guild.channels.resolve('727447198320820285');
+    } else if(message.content.toLowerCase().startsWith(prefix + 'bug ')) {
+        let bugChannel = message.guild.channels!resolve('727447198320820285');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -88,7 +84,7 @@ client.on('message', function(message) {
                 .setColor('#eda05c')
                 .setAuthor(message.member.user.username, message.member.user.displayAvatarURL())
                 .setTitle(`Обнаружен баг:`)
-                .setDescription(`${message.content.replace("s.bug ", "")}`)
+                .setDescription(`${message.content.replace(prefix + 'bug ', '')}`)
             bugChannel.send(answerEmbed);
             message.delete();
             message.reply("Ваш баг был отправлен админам и модерам.")
@@ -103,8 +99,8 @@ client.on('message', function(message) {
                 .setDescription(`${message.author}, пожалуйста, подождите примерно 1 час (таков таймаут).`)
             message.channel.send(answerEmbed);
         }
-    } else if(message.content.toLowerCase().startsWith("s.complaint ")) {
-        let complaintChannel = message.guild.channels.resolve('727076530345476209');
+    } else if(message.content.toLowerCase().startsWith(prefix + 'complaint ')) {
+        let complaintChannel = message.guild.channels!resolve('727076530345476209');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -118,7 +114,7 @@ client.on('message', function(message) {
                 .setColor('#ed634a')
                 .setAuthor(message.member.user.username, message.member.user.displayAvatarURL())
                 .setTitle(`Жалоба:`)
-                .setDescription(`${message.content.replace("s.complaint ", "")}`)
+                .setDescription(`${message.content.replace(prefix + 'complaint ', '')}`)
             complaintChannel.send(answerEmbed).then(message => {
                 message.react('👍');
                 message.react('👎');
