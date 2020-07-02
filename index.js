@@ -17,12 +17,12 @@ client.on('ready', function() {
 });
 
 client.on('message', function(message) {
-	client.user.setPresence({
+    client.user.setPresence({
         status: "dnd",
         activity: {
-            name: message.guild.cache.size + ' and ' + prefix + 'help',
+            name: message.guild.id + ' members and ' + prefix + 'help',
             type: "WATCHING"
-        }
+    	}
     });
     let args = message.content.split(" ").splice(1, message.content.split(" ").length);
     if(message.channel.id == '725348850147000321') {
