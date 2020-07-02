@@ -5,19 +5,25 @@ const fs = require('fs');
 const prefix = "s.";
 let usersCooldown = [[]];
 
-client.on('ready', function(message) {
+client.on('ready', function() {
     console.log("Silence Bot#9138 is ready to work!");
-    let guild = client.guilds.resolve('723074367734546442');
     client.user.setPresence({
-        status: "dnd",
+        status: "online",
         activity: {
-            name: prefix + 'help' + guild.cache.size,
-            type: "WATCHING"
+            name: 'Waiting for first message...',
+            type: "PLAYING"
         }
     });
 });
 
 client.on('message', function(message) {
+	client.user.setPresence({
+        status: "dnd",
+        activity: {
+            name: message.guild.cache.size + ' and ' + prefix + 'help',
+            type: "WATCHING"
+        }
+    });
     let args = message.content.split(" ").splice(1, message.content.split(" ").length);
     if(message.channel.id == '725348850147000321') {
         if(message.content == "") {
@@ -87,7 +93,7 @@ client.on('message', function(message) {
                 .setDescription(`${message.content.replace(prefix + 'bug ', '')}`)
             bugChannel.send(answerEmbed);
             message.delete();
-            message.reply("Ваш баг был отправлен админам и модерам.")
+            message.reply("ваш баг был отправлен админам и модерам.")
             usersCooldown.push([message.member.id, true, "bug"]);
             setTimeout(function() {
                 usersCooldown.splice(usersCooldown.length - 1, 1);
