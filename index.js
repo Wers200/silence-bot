@@ -3,7 +3,7 @@ const client = new discord.Client();
 const config = require('./config.json');
 const fs = require('fs');
 const evalManager = new EvalManager();
-const prefix = "s!";
+const prefix = "s.";
 let usersCooldown = [[]];
 
 client.on('ready', function(message) {
@@ -25,13 +25,13 @@ client.on('message', function(message) {
             message.react('👎');
         }
     }
-    if(message.content.toLowerCase().startsWith("s!help")) {
+    if(message.content.toLowerCase().startsWith(prefix + 'help')) {
         const answerEmbed = new discord.MessageEmbed()
             .setColor('#c1e673')
             .setFooter(`Requested by ${message.member.user.username}`, message.member.user.displayAvatarURL({format: "gif"}))
             .setTitle(`Справка по командам Silence Bot:`)
             .addFields(
-                { name: 'Отправка идей / багов / жалоб', value: '• ' + prefix + 'idea (идея) - отправляет вашу идею в канал <#726083843085565993>.\n• s!bug (описание бага) - отправляет баг админам и модерам.\n• s!complaint (жалоба) - отправляет вашу жалобу в канал <#727076530345476209>.'}
+                { name: 'Отправка идей / багов / жалоб', value: '• ' + prefix + 'idea (идея) - отправляет вашу идею в канал <#726083843085565993>.\n• ' + prefix + 'bug (описание бага) - отправляет баг админам и модерам.\n• ' + prefix + 'complaint (жалоба) - отправляет вашу жалобу в канал <#727076530345476209>.'}
 	         )
              .setTimestamp();
         message.channel.send(answerEmbed);
