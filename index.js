@@ -36,7 +36,7 @@ client.on('message', function(message) {
         message.channel.send(answerEmbed);
     }
     else if(message.content.toLowerCase().startsWith(prefix + 'idea ')) {
-        let ideaChannel = message.guild.channels.resolve('726083843085565993');
+        let ideaChannel = client.channels.get('726083843085565993');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -69,7 +69,7 @@ client.on('message', function(message) {
             message.channel.send(answerEmbed);
         }
     } else if(message.content.toLowerCase().startsWith(prefix + 'bug ')) {
-        let bugChannel = message.guild.channels.resolve('727447198320820285');
+        let bugChannel = client.channels.get('727447198320820285');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
