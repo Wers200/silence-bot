@@ -33,23 +33,23 @@ client.on('message', function(message) {
 			}
 	    }
 	    if(message.content.toLowerCase().startsWith(prefix + 'help')) {
-		const answerEmbed = new discord.MessageEmbed()
-		    .setColor('#c1e673')
-		    .setFooter(`Requested by ${message.member.user.username}`, message.member.user.displayAvatarURL({format: "gif"}))
-		    .setTitle(`Справка по командам Silence Bot:`)
-		    .addFields({ name: 'Отправка идей / багов / жалоб', value: '• ' + prefix + 'idea (идея) - отправляет вашу идею в канал <#726083843085565993>.\n• ' + prefix + 'bug (описание бага) - отправляет баг админам и модерам.\n• ' + prefix + 'complaint (жалоба) - отправляет вашу жалобу в канал <#727076530345476209>.'})
-		    .setTimestamp();
-		message.channel.send(answerEmbed);
+			const answerEmbed = new discord.MessageEmbed()
+				.setColor('#c1e673')
+				.setFooter(`Requested by ${message.member.user.username}`, message.member.user.displayAvatarURL({format: "gif"}))
+				.setTitle(`Справка по командам Silence Bot:`)
+				.addFields({ name: 'Отправка идей / багов / жалоб', value: '• ' + prefix + 'idea (идея) - отправляет вашу идею в канал <#726083843085565993>.\n• ' + prefix + 'bug (описание бага) - отправляет баг админам и модерам.\n• ' + prefix + 'complaint (жалоба) - отправляет вашу жалобу в канал <#727076530345476209>.'})
+				.setTimestamp();
+			message.channel.send(answerEmbed);
 	    }
 	    else if(message.content.toLowerCase().startsWith(prefix + 'idea ')) {
-		let ideaChannel = client.channels.resolve('726083843085565993');
-		let ok = true;
-		let placement = 0;
-		for(let i = 0; i < usersCooldown.length; i++) {
-		    if(usersCooldown[i][0] == message.member.id && usersCooldown[i][2] == "idea") {
-			if(usersCooldown[i][1] == true) { ok = false; }
-			placement = i;
-		    }
+			let ideaChannel = client.channels.resolve('726083843085565993');
+			let ok = true;
+			let placement = 0;
+			for(let i = 0; i < usersCooldown.length; i++) {
+				if(usersCooldown[i][0] == message.member.id && usersCooldown[i][2] == "idea") {
+				if(usersCooldown[i][1] == true) { ok = false; }
+				placement = i;
+			}
 		}
 		if(ok) {
 		    const answerEmbed = new discord.MessageEmbed()
@@ -103,39 +103,40 @@ client.on('message', function(message) {
 			.setTitle(`Ошибка в отправке бага!`)
 			.setDescription(`${message.author}, пожалуйста, подождите примерно 1 час (таков таймаут).`)
 		    message.channel.send(answerEmbed);
-		} else if(message.content.toLowerCase().startsWith(prefix + 'complaint ')) {
-			let complaintChannel = client.channels.resolve('727076530345476209');
-			let ok = true;
-			let placement = 0;
-			for(let i = 0; i < usersCooldown.length; i++) {
-				if(usersCooldown[i][0] == message.member.id && usersCooldown[i][2] == "complaint") {
-				if(usersCooldown[i][1] == true) { ok = false; }
-				placement = i;
-				}
+		} 
+		if(message.content.toLowerCase().startsWith(prefix + 'complaint ')) {
+		let complaintChannel = client.channels.resolve('727076530345476209');
+		let ok = true;
+		let placement = 0;
+		for(let i = 0; i < usersCooldown.length; i++) {
+			if(usersCooldown[i][0] == message.member.id && usersCooldown[i][2] == "complaint") {
+			if(usersCooldown[i][1] == true) { ok = false; }
+			placement = i;
 			}
-			if(ok) {
-				const answerEmbed = new discord.MessageEmbed()
-				.setColor('#ed634a')
-				.setAuthor(message.member.user.username, message.member.user.displayAvatarURL())
-				.setTitle(`Жалоба:`)
-				.setDescription(`${message.content.replace(prefix + 'complaint ', '')}`)
-				complaintChannel.send(answerEmbed).then(message => {
-				message.react('👍');
-				message.react('👎');
-				});;
-				message.delete();
-				message.reply("ваша жалоба была отправлена в <#727076530345476209>.")
-				usersCooldown.push([message.member.id, true, "complaint"]);
-				setTimeout(function() {
-				usersCooldown.splice(usersCooldown.length - 1, 1);
-				}, 1800000)
-			} else {
-				const answerEmbed = new discord.MessageEmbed()
-				.setColor('#ff0000')
-				.setTitle(`Ошибка в отправке жалобы!`)
-				.setDescription(`${message.author}, пожалуйста, подождите примерно 30 минут (таков таймаут).`)
-				message.channel.send(answerEmbed);
-			}
+		}
+		if(ok) {
+			const answerEmbed = new discord.MessageEmbed()
+			.setColor('#ed634a')
+			.setAuthor(message.member.user.username, message.member.user.displayAvatarURL())
+			.setTitle(`Жалоба:`)
+			.setDescription(`${message.content.replace(prefix + 'complaint ', '')}`)
+			complaintChannel.send(answerEmbed).then(message => {
+			message.react('👍');
+			message.react('👎');
+			});;
+			message.delete();
+			message.reply("ваша жалоба была отправлена в <#727076530345476209>.")
+			usersCooldown.push([message.member.id, true, "complaint"]);
+			setTimeout(function() {
+			usersCooldown.splice(usersCooldown.length - 1, 1);
+			}, 1800000)
+		} else {
+			const answerEmbed = new discord.MessageEmbed()
+			.setColor('#ff0000')
+			.setTitle(`Ошибка в отправке жалобы!`)
+			.setDescription(`${message.author}, пожалуйста, подождите примерно 30 минут (таков таймаут).`)
+			message.channel.send(answerEmbed);
+		}
 	    }
 	} catch(exc) {
 		console.log("Shit! " + exc);	
