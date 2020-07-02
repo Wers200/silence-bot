@@ -71,7 +71,8 @@ client.on('message', function(message) {
 					.setColor('#ff0000')
 					.setTitle(`Ошибка в отправке предложения!`)
 					.setDescription(`${message.author}, пожалуйста, подождите примерно 10 минут (таков таймаут).`)
-		    	message.channel.send(answerEmbed);
+		    		message.channel.send(answerEmbed);
+			}
 		} else if(message.content.toLowerCase().startsWith(prefix + 'bug ')) {
 			let bugChannel = client.channels.resolve('727447198320820285');
 			let ok = true;
