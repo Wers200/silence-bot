@@ -20,7 +20,7 @@ client.on('message', function(message) {
     client.user.setPresence({
         status: "dnd",
         activity: {
-            name: message.guild.id + ' members and ' + prefix + 'help',
+            name: message.guild.memberCount + ' members and ' + prefix + 'help',
             type: "WATCHING"
     	}
     });
