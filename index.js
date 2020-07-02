@@ -2,7 +2,6 @@ const discord = require('discord.js');
 const client = new discord.Client();
 const config = require('./config.json');
 const fs = require('fs');
-const evalManager = new EvalManager();
 const prefix = "s.";
 let usersCooldown = [[]];
 
