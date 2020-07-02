@@ -10,7 +10,7 @@ client.on('ready', function(message) {
     client.user.setPresence({
         status: "dnd",
         activity: {
-            name: 'Amazing server Silence and ' + prefix + 'help',
+            name: prefix + 'help and ' + client.guilds[0].cache.size,
             type: "WATCHING"
         }
     });
