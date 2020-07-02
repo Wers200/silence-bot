@@ -37,7 +37,7 @@ client.on('message', function(message) {
         message.channel.send(answerEmbed);
     }
     else if(message.content.toLowerCase().startsWith(prefix + 'idea ')) {
-        let ideaChannel = message.guild.channels!resolve('726083843085565993');
+        let ideaChannel = message.guild.channels.resolve('726083843085565993');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -70,7 +70,7 @@ client.on('message', function(message) {
             message.channel.send(answerEmbed);
         }
     } else if(message.content.toLowerCase().startsWith(prefix + 'bug ')) {
-        let bugChannel = message.guild.channels!resolve('727447198320820285');
+        let bugChannel = message.guild.channels.resolve('727447198320820285');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -100,7 +100,7 @@ client.on('message', function(message) {
             message.channel.send(answerEmbed);
         }
     } else if(message.content.toLowerCase().startsWith(prefix + 'complaint ')) {
-        let complaintChannel = message.guild.channels!resolve('727076530345476209');
+        let complaintChannel = message.guild.channels.resolve('727076530345476209');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
