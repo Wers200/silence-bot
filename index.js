@@ -7,10 +7,11 @@ let usersCooldown = [[]];
 
 client.on('ready', function(message) {
     console.log("Silence Bot#9138 is ready to work!");
+    let guild = client.guilds.resolve('723074367734546442');
     client.user.setPresence({
         status: "dnd",
         activity: {
-            name: prefix + 'help and ' + client.guilds[0].cache.size,
+            name: prefix + 'help' + guild.cache.size,
             type: "WATCHING"
         }
     });
@@ -36,7 +37,7 @@ client.on('message', function(message) {
         message.channel.send(answerEmbed);
     }
     else if(message.content.toLowerCase().startsWith(prefix + 'idea ')) {
-        let ideaChannel = client.channels.get('726083843085565993');
+        let ideaChannel = client.channels.resolve('726083843085565993');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -69,7 +70,7 @@ client.on('message', function(message) {
             message.channel.send(answerEmbed);
         }
     } else if(message.content.toLowerCase().startsWith(prefix + 'bug ')) {
-        let bugChannel = client.channels.get('727447198320820285');
+        let bugChannel = client.channels.resolve('727447198320820285');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
@@ -99,7 +100,7 @@ client.on('message', function(message) {
             message.channel.send(answerEmbed);
         }
     } else if(message.content.toLowerCase().startsWith(prefix + 'complaint ')) {
-        let complaintChannel = message.guild.channels.resolve('727076530345476209');
+        let complaintChannel = client.channels.resolve('727076530345476209');
         let ok = true;
         let placement = 0;
         for(let i = 0; i < usersCooldown.length; i++) {
