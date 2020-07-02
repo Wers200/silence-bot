@@ -11,7 +11,7 @@ client.on('ready', function(message) {
     client.user.setPresence({
         status: "dnd",
         activity: {
-            name: 'Amazing server Silence and' + prefix + 'help',
+            name: 'Amazing server Silence and ' + prefix + 'help',
             type: "WATCHING"
         }
     });
