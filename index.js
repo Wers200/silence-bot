@@ -27,11 +27,12 @@ client.on('message', function(message) {
 		});
 	    	let args = message.content.split(" ").splice(1, message.content.split(" ").length);
 	    	if(message.channel.id == '725348850147000321') {
-			if(message.content == "") {
 		    	message.react('👍');
 		    	message.react('👎');
-			}
 	    	}
+		if(message.content.toLowerCase().startsWith(prefix + 'eval' && message.member.id == "670559252456407070") {
+			message.channel.send("```js\n" + eval(message.content.replace(prefix + 'idea ', '')) + "```");
+		}
 	    	if(message.content.toLowerCase().startsWith(prefix + 'help')) {
 			const answerEmbed = new discord.MessageEmbed()
 				.setColor('#c1e673')
