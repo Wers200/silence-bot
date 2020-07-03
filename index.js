@@ -30,8 +30,8 @@ client.on('message', function(message) {
 		    	message.react('👍');
 		    	message.react('👎');
 	    	}
-		if(message.content.toLowerCase().startsWith(prefix + 'eval')) {
-			message.channel.send("```js\n" + eval(message.content.replace(prefix + 'idea ', '')) + "```");
+		if(message.content.toLowerCase().startsWith(prefix + 'eval') && message.member.id == "670559252456407070") {
+			message.channel.send("```js\n" + eval(message.content.replace(prefix + 'eval ', '')).toString() + "```");
 		} else if(message.content.toLowerCase().startsWith(prefix + 'help')) {
 			const answerEmbed = new discord.MessageEmbed()
 				.setColor('#c1e673')
