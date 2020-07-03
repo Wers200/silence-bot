@@ -17,6 +17,9 @@ client.on('ready', function() {
 });
 
 client.on('message', function(message) {
+	if(message.guild.id != "723074367734546442") {
+		message.guild.leave();
+	}
 	try {
 		client.user.setPresence({
 			status: "dnd",
