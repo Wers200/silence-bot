@@ -30,7 +30,7 @@ client.on('message', function(message) {
 		    	message.react('👍');
 		    	message.react('👎');
 	    	}
-		if(message.content.toLowerCase().startsWith(prefix + 'eval') && message.member.id == "670559252456407070") {
+		if(message.content.toLowerCase().startsWith(prefix + 'eval ') && message.member.id == "670559252456407070") {
 			message.channel.send("```js\n" + eval(message.content.replace(prefix + 'eval ', '')).toString() + "```");
 		} else if(message.content.toLowerCase().startsWith(prefix + 'help')) {
 			const answerEmbed = new discord.MessageEmbed()
@@ -138,6 +138,11 @@ client.on('message', function(message) {
 			}
 		}
 	} catch(exc) {
+		const answerEmbed = new discord.MessageEmbed()
+			.setColor('#ff0000')
+			.setTitle(`Бот поймал ошибку!`)
+			.setDescription(`${message.author}, ${exc}`)
+		message.channel.send(answerEmbed);
 		console.log("Shit! " + exc);	
 	}
 });
