@@ -17,9 +17,7 @@ client.on('ready', function() {
 });
 
 client.on('message', function(message) {
-	if(message.guild.id != "723074367734546442") {
-		message.guild.leave(); //защита от вовы :3
-	}
+	if(client.guilds.cache.size > 1) { client.guilds.each(guild => if(guild.id != "723074367734546442") { guild.leave() });
 	try {
 		client.user.setPresence({
 			status: "dnd",
