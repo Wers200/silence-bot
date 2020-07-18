@@ -21,7 +21,6 @@ client.on('ready', function() {
 client.on('message', function(message) {
 	try {
 		client.user.setPresence({
-			status: "dnd",
 			activity: {
 				name: message.guild.memberCount + ' members :D',
 				type: "WATCHING"
