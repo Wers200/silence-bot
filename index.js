@@ -4,6 +4,8 @@ const config = require('./config.json');
 const fs = require('fs');
 const prefix = "s.";
 let usersCooldown = [[]];
+const constant = require('discord.js/src/util/Constants.js')
+constant.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
 client.on('ready', function() {
 	console.log("Silence Bot#9138 is ready to work!");
