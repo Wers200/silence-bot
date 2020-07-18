@@ -4,7 +4,7 @@ const config = require('./config.json');
 const fs = require('fs');
 const prefix = "s.";
 let usersCooldown = [[]];
-const constant = require('discord.js/src/util/Constants.js')
+const constant = require('./node_modules/discord.js/src/util/Constants.js')
 constant.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
 client.on('ready', function() {
