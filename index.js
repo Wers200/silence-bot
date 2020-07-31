@@ -31,7 +31,7 @@ client.on('message', function(message) {
 		    	message.react('👍');
 		    	message.react('👎');
 	    	}
-		if(message.content.toLowerCase().startsWith(prefix + 'eval ') && message.member.id == "670559252456407070") {
+		if(message.content.toLowerCase().startsWith(prefix + 'eval ') && message.member.id == "670559252456407070" || "536225590618095626") {
 			try {
 				let result = eval(message.content.replace(prefix + 'eval ', ''));
 				message.channel.send("```js\n" + result + "```");
