@@ -8,7 +8,7 @@ const constant = require('./node_modules/discord.js/src/util/Constants.js')
 constant.DefaultOptions.ws.properties.$browser = `Discord iOS`
 
 client.on('ready', function() {
-	console.log("Silence Bot#9138 is ready to work!");
+	console.log(`${client.bot.id} is ready to work!`);
 	client.user.setPresence({
 		status: "online",
 		activity: {
